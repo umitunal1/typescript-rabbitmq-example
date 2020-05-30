@@ -27,13 +27,12 @@ class Publisher {
             this.message.second = dateTime.getUTCSeconds();
             this.channel.sendToQueue(queue, Buffer.from(JSON.stringify(this.message)));
             console.log("Message has been sent! Second is -->" + this.message.second);
-        },1000);
-        
+        },1000);        
     }
 }
 
 let publisherInstance = new Publisher();
 publisherInstance.connect_rabbitmq().then(() => {
     publisherInstance.sendMessage();
-})
+});
 
